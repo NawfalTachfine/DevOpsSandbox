@@ -30,6 +30,4 @@ workflows:
       - print_world:
           requires:
           - print_hello
-      - hey_you:
-          requires:
-          - print_world
+      - hey_you
