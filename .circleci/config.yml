@@ -15,6 +15,13 @@ jobs:
       - run: 
           name: print world
           command: echo "y'all"
+  hey_you:
+    docker:
+      - image: alpine
+    steps:
+      - run:
+          name: hey you
+          command: echo "Hello $PERSON"
 # ---
 workflows:
   yooo:
@@ -23,3 +30,6 @@ workflows:
       - print_world:
           requires:
           - print_hello
+      - hey_you:
+          requires:
+          - print_world
