@@ -1,0 +1,33 @@
+version: 2.1
+# ---
+jobs:
+  print_hello:
+    docker: 
+      - image: alpine
+    steps:
+      - run: 
+          name: print hello
+          command: echo "howdie"
+  print_world:
+    docker: 
+      - image: alpine
+    steps:
+      - run: 
+          name: print world
+          command: echo "y'all"
+  hey_you:
+    docker:
+      - image: alpine
+    steps:
+      - run:
+          name: hey you
+          command: echo "Hello $PERSON"
+# ---
+workflows:
+  yooo:
+    jobs:
+      - print_hello
+      - print_world:
+          requires:
+          - print_hello
+      - hey_you
