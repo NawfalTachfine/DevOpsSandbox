@@ -7,7 +7,7 @@ jobs:
     steps:
       - run: 
           name: save hello output
-          command: echo "howdie there!" > output.txt
+          command: echo "howdie there!" > /tmp/output.txt
       - persist_to_workspace:
           root: /tmp
           paths: 
