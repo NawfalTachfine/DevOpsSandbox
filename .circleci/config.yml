@@ -1,33 +1,31 @@
 version: 2.1
 # ---
 jobs:
-  print_hello:
+  save_hello_output:
     docker: 
       - image: alpine
     steps:
       - run: 
-          name: print hello
-          command: echo "howdie"
-  print_world:
+          name: save hello output
+          command: echo "howdie there!" > output.txt
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths: 
+          - output.txt
+  load_hello_output:
     docker: 
       - image: alpine
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - run: 
-          name: print world
-          command: echo "y'all"
-  hey_you:
-    docker:
-      - image: alpine
-    steps:
-      - run:
-          name: hey you
-          command: echo "Hello $PERSON"
+          name: load hello world
+          command: cat output.txt
 # ---
 workflows:
-  yooo:
+  hey:
     jobs:
-      - print_hello
-      - print_world:
+      - save_hello_output
+      - load_hello_output:
           requires:
-          - print_hello
-      - hey_you
+          - save_hello_output
