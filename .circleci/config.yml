@@ -20,7 +20,7 @@ jobs:
           at: ~/
       - run: 
           name: load hello world
-          command: cat /tmp/output.txt
+          command: cat ~/output.txt
 # ---
 workflows:
   hey:
