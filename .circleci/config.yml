@@ -9,7 +9,7 @@ jobs:
           name: save hello output
           command: echo "howdie there!" > /tmp/output.txt
       - persist_to_workspace:
-          root: /tmp
+          root: ~/
           paths: 
           - output.txt
   load_hello_output:
@@ -17,7 +17,7 @@ jobs:
       - image: alpine
     steps:
       - attach_workspace:
-          at: /tmp
+          at: ~/
       - run: 
           name: load hello world
           command: cat /tmp/output.txt
