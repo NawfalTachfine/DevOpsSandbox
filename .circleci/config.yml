@@ -10,9 +10,7 @@ jobs:
     docker: 
       - image: alpine
     steps:
-      - run: 
-          name: print something
-          command: print_pipeline_id
+      - print_pipeline_id
 # ---
 workflows:
   hey:
