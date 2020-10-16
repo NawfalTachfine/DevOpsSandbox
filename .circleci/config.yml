@@ -1,31 +1,20 @@
 version: 2.1
 # ---
+commands:
+    print_pipeline_id:
+      steps:
+      - run: echo $CIRCLE_WORKFLOW_ID
+# ---
 jobs:
-  save_hello_output:
+  say_hi:
     docker: 
       - image: alpine
     steps:
       - run: 
-          name: save hello output
-          command: echo "howdie there!" > ~/output.txt
-      - persist_to_workspace:
-          root: ~/
-          paths: 
-          - output.txt
-  load_hello_output:
-    docker: 
-      - image: alpine
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run: 
-          name: load hello world
-          command: cat ~/output.txt
+          name: print something
+          command: print_pipeline_id
 # ---
 workflows:
   hey:
     jobs:
-      - save_hello_output
-      - load_hello_output:
-          requires:
-          - save_hello_output
+      - say_hi
