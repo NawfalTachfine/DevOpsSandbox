@@ -6,14 +6,10 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: return 1 # echo "Not failing!"
-  react:
-    docker: 
-      - image: circleci/node:13.8.0
-    steps:
       - when: 
           condition: on_fail
           steps:
-            - run: echo "I'm fine!"
+            - run: echo "Nevermind I'm fine!"
 # ---
 workflows:
   handle_failure:
