@@ -5,7 +5,7 @@ jobs:
     docker: 
       - image: alpine
     steps:
-      - run: echo "Not failing!"
+      - run: return 1 # echo "Not failing!"
       - run: 
           command: echo "Nevermind I'm fine!" 
           when: on_fail            
