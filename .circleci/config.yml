@@ -10,8 +10,10 @@ jobs:
     docker: 
       - image: circleci/node:13.8.0
     steps:
-      - run: echo "I'm fine!g"
-      - when: on_fail
+      - when: 
+          condition: on_fail
+          steps:
+            - run: echo "I'm fine!"
 # ---
 workflows:
   handle_failure:
