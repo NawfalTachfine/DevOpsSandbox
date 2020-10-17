@@ -5,7 +5,7 @@ jobs:
     docker: 
       - image: circleci/node:13.8.0
     steps:
-      - run: return 0 # 0 | 1
+      - run: echo "Not failing!"
   react:
     docker: 
       - image: circleci/node:13.8.0
