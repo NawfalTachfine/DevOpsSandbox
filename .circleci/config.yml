@@ -19,4 +19,3 @@ workflows:
   handle_failure:
     jobs:
       - fail
-      - react
