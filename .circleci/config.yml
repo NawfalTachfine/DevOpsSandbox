@@ -3,9 +3,9 @@ version: 2.1
 jobs:
   fail:
     docker: 
-      - image: circleci/node:13.8.0
+      - image: alpine
     steps:
-      - run: return 1 # echo "Not failing!"
+      - run: echo "Not failing!"
       - run: 
           command: echo "Nevermind I'm fine!" 
           when: on_fail            
