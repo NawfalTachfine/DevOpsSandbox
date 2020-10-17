@@ -6,10 +6,9 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: return 1 # echo "Not failing!"
-      - when: 
-          condition: on_fail
-          steps:
-            - run: echo "Nevermind I'm fine!"
+      - run: 
+          command: echo "Nevermind I'm fine!" 
+          when: on_fail            
 # ---
 workflows:
   handle_failure:
