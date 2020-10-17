@@ -9,9 +9,9 @@ jobs:
   react:
     docker: 
       - image: circleci/node:13.8.0
-    when: on_fail
     steps:
-      - run: echo "I'm fine!"
+      - run: echo "I'm fine!g"
+      - when: on_fail
 # ---
 workflows:
   handle_failure:
