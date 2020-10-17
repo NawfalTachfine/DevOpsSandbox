@@ -1,31 +1,20 @@
 version: 2.1
 # ---
-commands:
-    print_pipeline_id:
-      steps:
-      - run: echo $CIRCLE_WORKFLOW_ID
-    print_pipeline_id_alt:
-      parameters:
-          id:
-            type: string
-      steps:
-      - run: echo << parameters.id >>
-# ---
 jobs:
-  say_hi:
+  fail:
     docker: 
-      - image: alpine
+      - image: circleci/node:13.8.0
     steps:
-      - print_pipeline_id
-  say_hey:
+      - run: return 1
+  react:
     docker: 
-      - image: alpine
+      - image: circleci/node:13.8.0
+    when: on_fail
     steps:
-      - print_pipeline_id_alt:
-          id: << pipeline.id >>
+      - run: echo "I'm fine!"
 # ---
 workflows:
-  hey:
+  handle_failure:
     jobs:
-      - say_hi
-      - say_hey
+      - fail
+      - react
